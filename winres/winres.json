@@ -1,0 +1,74 @@
+{
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": [
+        "../icon.ico"
+      ]
+    }
+  },
+  "RT_MANIFEST": {
+    "#1": {
+      "0409": {
+        "identity": {
+          "name": "Networ Tester",
+          "version": "1.0.0.0"
+        },
+        "description": "网络测试工具",
+        "minimum-os": "win7",
+        "execution-level": "as invoker",
+        "ui-access": false,
+        "auto-elevate": false,
+        "dpi-awareness": "system",
+        "disable-theming": false,
+        "disable-window-filtering": false,
+        "high-resolution-scrolling-aware": false,
+        "ultra-high-resolution-scrolling-aware": false,
+        "long-path-aware": false,
+        "printer-driver-isolation": false,
+        "gdi-scaling": false,
+        "segment-heap": false,
+        "use-common-controls-v6": true
+      }
+    }
+  },
+  "RT_VERSION": {
+    "#1": {
+      "0000": {
+        "fixed": {
+          "file_version": "1.0.0.0",
+          "product_version": "1.0.0.0"
+        },
+        "info": {
+          "0409": {
+            "Comments": "Network Testing Tool",
+            "CompanyName": "Networ Tester",
+            "FileDescription": "网络测试工具",
+            "FileVersion": "1.0.0.0",
+            "InternalName": "networ-tester",
+            "LegalCopyright": "© 2025 Networ Tester. All rights reserved.",
+            "LegalTrademarks": "",
+            "OriginalFilename": "networ-tester.exe",
+            "PrivateBuild": "",
+            "ProductName": "Networ Tester",
+            "ProductVersion": "1.0.0.0",
+            "SpecialBuild": ""
+          }
+        }
+      }
+    }
+  },
+  "icon": [
+    "../icon.ico"
+  ],
+  "name": "Networ Tester",
+  "version": {
+    "FileVersion": "1.0.0.0",
+    "ProductVersion": "1.0.0.0",
+    "Fixed": true
+  },
+  "manifest": "",
+  "description": "网络测试工具",
+  "company": "Networ Tester",
+  "product": "Networ Tester",
+  "copyright": "© 2025 Networ Tester. All rights reserved."
+}

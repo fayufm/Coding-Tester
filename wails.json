@@ -1,0 +1,32 @@
+{
+  "name": "networ-tester",
+  "outputfilename": "networ-tester",
+  "frontend:install": "",
+  "frontend:build": "",
+  "frontend:dev:watcher": "",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Networ Tester",
+    "email": "info@networtester.com"
+  },
+  "appargs": "",
+  "wailsjsdir": "./frontend",
+  "version": "2",
+  "Path": "",
+  "BuildDir": "",
+  "OutputType": "",
+  "Platform": "",
+  "Tags": "",
+  "runNonNativeBuildHooks": false,
+  "postBuildHooks": null,
+  "preBuildHooks": null,
+  "info": {
+    "companyName": "Networ Tester",
+    "productName": "Networ Tester",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright © 2025",
+    "comments": "Network Testing Tool"
+  },
+  "nsisType": "",
+  "icon": "tubiao.ico"
+} 

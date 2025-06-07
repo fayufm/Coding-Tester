@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Tester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="36.png" alt="Coding Tester Logo">
+                <h1>Coding Tester</h1>
+            </div>
+            <div class="system-info" id="system-info">
+                <div class="info-item">
+                    <span class="label">操作系统：</span>
+                    <span class="value" id="os-info">加载中...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">架构：</span>
+                    <span class="value" id="arch-info">加载中...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">CPU 核心：</span>
+                    <span class="value" id="cpu-info">加载中...</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="scan-section">
+                <button id="scan-btn" class="primary-btn">扫描编程语言</button>
+                <button id="test-btn" class="secondary-btn" style="margin-top: 10px;">测试通信</button>
+                <div id="test-result" style="margin-top: 10px; color: var(--primary-color);"></div>
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>正在扫描系统中的编程语言...</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="scan-progress-bar"></div>
+                        <div class="progress-text" id="scan-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-container" id="results-container">
+                <h2>检测结果</h2>
+                <div class="search-bar">
+                    <input type="text" id="language-search" placeholder="搜索编程语言..." />
+                </div>
+                <div class="results-tabs">
+                    <button class="tab-btn active" data-tab="installed">已安装 <span id="installed-count">0</span></button>
+                    <button class="tab-btn" data-tab="missing">未安装 <span id="missing-count">0</span></button>
+                    <button class="tab-btn" data-tab="packages">包搜索</button>
+                    <button class="tab-btn" data-tab="ai-assistant">AI助手</button>
+                </div>
+
+                <div class="tab-content active" id="installed-tab">
+                    <div class="languages-grid" id="installed-languages">
+                        <!-- 已安装的语言将在这里动态生成 -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="missing-tab">
+                    <div class="languages-grid" id="missing-languages">
+                        <!-- 未安装的语言将在这里动态生成 -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="packages-tab">
+                    <div class="package-search-container">
+                        <h3>包搜索</h3>
+                        <div class="search-form">
+                            <div class="form-group">
+                                <label for="package-manager">包管理器:</label>
+                                <select id="package-manager">
+                                    <option value="npm">npm (Node.js)</option>
+                                    <option value="pip">pip (Python)</option>
+                                    <option value="gem">gem (Ruby)</option>
+                                    <option value="cargo">cargo (Rust)</option>
+                                    <option value="composer">composer (PHP)</option>
+                                    <option value="nuget">nuget (.NET)</option>
+                                    <option value="maven">maven (Java)</option>
+                                    <option value="go">go (Go)</option>
+                                    <option value="dub">dub (D语言)</option>
+                                    <option value="hex">hex (Elixir)</option>
+                                    <option value="nimble">nimble (Nim)</option>
+                                    <option value="brew">brew (Homebrew)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="package-name">包名称:</label>
+                                <input type="text" id="package-name" placeholder="输入包名称...">
+                            </div>
+                            <button id="search-btn" class="primary-btn">搜索</button>
+                        </div>
+                        <div class="search-results" id="search-results">
+                            <!-- 搜索结果将在这里动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="ai-assistant-tab">
+                    <div class="ai-container">
+                        <div class="ai-settings">
+                            <h3>AI助手设置</h3>
+                            <div class="form-group">
+                                <label for="ai-provider">AI提供商:</label>
+                                <select id="ai-provider">
+                                    <!-- AI提供商将在这里动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="api-key">API密钥:</label>
+                                <input type="password" id="api-key" placeholder="输入API密钥...">
+                            </div>
+                            <div class="form-group" id="custom-endpoint-container" style="display: none;">
+                                <label for="custom-endpoint">自定义端点:</label>
+                                <input type="text" id="custom-endpoint" placeholder="输入自定义API端点URL...">
+                            </div>
+                            <button id="save-ai-config-btn" class="primary-btn">保存配置</button>
+                            <a id="provider-docs-link" href="#" target="_blank" class="docs-link">查看API文档</a>
+                            <div style="margin-top: 20px;">
+                                <button id="add-detection-data-btn" class="secondary-btn">添加语言检测数据</button>
+                                <div class="hint-text" style="font-size: 12px; margin-top: 5px; color: #777;">
+                                    将当前检测到的编程语言数据发送给AI分析
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="message system">
+                                    <div class="message-content">
+                                        <p>欢迎使用编程AI助手，请设置API密钥后开始对话。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-progress-container" id="ai-progress-container" style="display: none;">
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="ai-progress-bar"></div>
+                                    <div class="progress-text" id="ai-progress-text">0%</div>
+                                </div>
+                                <p id="ai-progress-status">正在处理数据...</p>
+                            </div>
+                            <div class="chat-input">
+                                <textarea id="user-input" placeholder="输入你的编程问题..." rows="3"></textarea>
+                                <button id="send-btn" class="primary-btn">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p></p>
+        </footer>
+    </div>
+
+    <!-- 语言详情模态框 -->
+    <div class="modal" id="language-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">语言详情</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- 语言详情将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 主题切换器 -->
+    <div class="theme-switcher" id="theme-switcher" style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
+        <div class="theme-toggle-btn" title="主题设置">⚙️</div>
+        <div class="theme-options-grid">
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="themes">主题</button>
+                <button class="settings-tab" data-tab="wallpapers">壁纸</button>
+                <button class="settings-tab" data-tab="auto">自动</button>
+            </div>
+            
+            <div class="settings-panel active" id="themes-panel">
+                <div class="theme-option" data-theme="default" title="默认主题"></div>
+                <div class="theme-option" data-theme="dark" title="深色主题"></div>
+                <div class="theme-option" data-theme="teal" title="蓝绿主题"></div>
+                <div class="theme-option" data-theme="purple" title="紫色主题"></div>
+                <div class="theme-option" data-theme="orange" title="橙色主题"></div>
+                <div class="theme-option" data-theme="pink" title="粉色主题"></div>
+                <div class="theme-option" data-theme="green" title="绿色主题"></div>
+                <div class="theme-option" data-theme="yellow" title="黄色主题"></div>
+                <div class="theme-option" data-theme="red" title="红色主题"></div>
+                <div class="theme-option" data-theme="high-contrast" title="高对比度"></div>
+            </div>
+            
+            <div class="settings-panel" id="wallpapers-panel">
+                <div class="wallpaper-option" data-wallpaper="none" title="无壁纸"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-1" title="格子纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-2" title="圆点纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-3" title="棋盘纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-4" title="网格纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-5" title="渐变"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-6" title="菱形纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-7" title="细网格"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-8" title="光晕"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-9" title="斜纹"></div>
+                <div class="wallpaper-option" data-wallpaper="pattern-10" title="彩虹渐变"></div>
+            </div>
+            
+            <div class="settings-panel" id="auto-panel">
+                <div class="auto-theme-settings">
+                    <div class="settings-item">
+                        <label>
+                            <input type="checkbox" id="auto-theme-toggle">
+                            <span>自动切换主题</span>
+                        </label>
+                    </div>
+                    <div class="settings-item day-theme-select">
+                        <label>白天主题:</label>
+                        <select id="day-theme-select"></select>
+                    </div>
+                    <div class="settings-item night-theme-select">
+                        <label>夜间主题:</label>
+                        <select id="night-theme-select"></select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-search">
+                <input type="text" id="settings-search-input" placeholder="搜索主题或壁纸...">
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
